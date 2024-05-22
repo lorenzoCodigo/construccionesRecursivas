@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./../imagenes/espiral90.jpg">
+    <title>Interactividad | Proyecto Matemático</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            color:white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .top, .intros {
+            border-radius: 10px;
+            margin: 30px;
+            padding: 20px;
+            height: 36px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info {
+            display: flex;
+            margin: 10px;
+            height: 1200px;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+
+        .box {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .box-top{
+            height: 77px;
+            background: linear-gradient(to bottom, #007bff, #004a99);
+        }
+
+        .box-bottom{
+            width: 100%;
+            height: 100%;
+        }
+
+        #svg-container{
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1><a href="./../paginas/web.html">Mates Interactivas</a></h1>
+        <nav>
+            <a href="./../paginas/acercade.html">Documentación</a>
+            <a href="./../paginas/ciencia.html">Interactividad</a>
+        </nav>
+    </header>
+    
+    <div class="top">
+        <h2>Interactividad</h2></p>
+    </div>
+
+    <div class="intros">
+        <input type="number" id="angulo" placeholder="Ángulo de formación"> 
+        <button onclick="miFuncion()">Enviar</button>
+    </div>
+
+    <section class="info">
+        <div class="box" id="dibujos">
+
+            <div class="box-top"></div>
+    
+            <div class="box-bottom">
+                <svg id="svg-container"></svg>
+            </div>
+
+        </div>
+    </section>
+
+    <h3>Gráfico</h3>
+    <canvas id="grafico"></canvas>
+
+    <footer>
+        <a href="#">Contacto</a>
+        <p>Aidan Lorenzo 2024</p>
+    </footer>
+
+    <script>
+        
+        // Función para crear un triángulo en SVG
+
+    function createTriangle(points) {
+        const triangle = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        triangle.setAttribute("points", points);
+        triangle.setAttribute("fill", "none");
+        triangle.setAttribute("stroke", "black");
+        triangle.setAttribute("stroke-width", "1");
+
+        return triangle;
+    }
+
+        // Función para dibujar la formación de triángulos y descargar el SVG
+    async function drawTriangleFormation(containerID, x, k, delay, sideLength) {
+        const container = document.getElementById(containerID);
+        container.innerHTML = ""; // Limpiar el contenedor
+        
+        // Coordenadas del vértice izquierdo A inicial
+        let ax = parseInt(c(150, (x/180)*Math.PI))*sideLength;
+        let ay = 500;
+
+        // Coordenadas del vértice derecho B inicial
+        let bx = ax + sideLength;
+        let by = ay;
+
+        // Crear un elemento SVG
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+
+        for (let i = 0; i < k; i++) {
+            // Calcular las coordenadas de C
+            const dx = bx - ax; // Componente en x de AB
+            const dy = by - ay; // Componente en y de AB
+
+            // Calcular las componentes de u (vector unitario)
+            const uLength = Math.sqrt(dx * dx + dy * dy);
+            const ux = dx / uLength;
+            const uy = dy / uLength;
+
+            // Calcular las componentes de v (vector rotado x grados)
+            const vx = ux * Math.cos(degToRad(x)) - uy * Math.sin(degToRad(x));
+            const vy = ux * Math.sin(degToRad(x)) + uy * Math.cos(degToRad(x));
+
+            // Calcular las coordenadas de C
+            const cx = ax + sideLength * vx;
+            const cy = ay + sideLength * vy;
+
+            // Crear los puntos del triángulo
+            const points = `${ax},${ay} ${bx},${by} ${cx},${cy}`;
+            const triangle = createTriangle(points);
+
+            // Añadir el triángulo al SVG
+            svg.appendChild(triangle);
+
+            // Actualizar las coordenadas de A y B para la próxima iteración
+            ax = cx;
+            ay = cy;
+
+            // Esperar el tiempo especificado antes de continuar
+            await new Promise(resolve => setTimeout(resolve, delay));
+
+        
+        // Agregar el SVG al contenedor
+        container.appendChild(svg);
+    }
+}
+
+    // Función para convertir grados a radianes
+    function degToRad(degrees) {
+        return degrees * Math.PI / 180;
+    }
+
+    function c(i,x) {   
+        if(i==0) {
+            return 1;
+        }
+        let previous = c(i-1, x)
+        return Math.sqrt(1+previous**2-2*previous*Math.cos(x));
+        }
+
+    function dibujarGrafico(angle, n){
+
+    //GRÁFICO DE C
+
+    let angulos2 = []
+    for (let i = 0; i <=n; i++) {
+        angulos2.push(i)
+    }
+
+    const valoresC = angulos2.map((el) => c(el, (angle/180)*Math.PI))
+
+    // Obtener una referencia al elemento canvas del DOM
+    const $grafica2 = document.querySelector("#grafico");
+    // Las etiquetas son las que van en el eje X. 
+    const etiquetas2 = angulos2
+    // Podemos tener varios conjuntos de datos. Comencemos con uno
+    const datosDeC = {
+        label: `Valor de c con x=${angle}º`,
+        data: valoresC, // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+        backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de fondo
+        borderColor: 'rgba(54, 162, 235, 1)', // Color del borde
+        borderWidth: 1,// Ancho del borde   7
+    };
+
+    new Chart($grafica2, {
+        type: 'line',// Tipo de gráfica
+        data: {
+            labels: etiquetas2,
+            datasets: [
+                datosDeC,
+                // Aquí más datos...
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+            },
+        }
+    })
+}
+
+    function miFuncion(){
+        let angle = document.getElementById("angulo").value
+        let big;
+
+        if(angle<=60){big = 500}
+        else if(angle < 80) {big = 150}
+        else if (angle < 90) {big=75}
+        else {big=30}
+            
+        drawTriangleFormation("svg-container", -angle, 500, 50, big)
+        dibujarGrafico(angle, 1500)
+
+        
+    }
+    
+
+</script>
+
+</body>
+</html>

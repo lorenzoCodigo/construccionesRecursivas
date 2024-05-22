@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./../imagenes/espiral90.jpg">
+    <title>Main | Proyecto Matemático</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            color:white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .top {
+            border-radius: 10px;
+            margin: 30px;
+            padding: 20px;
+            height: 36px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info {
+            display: flex;
+            margin: 10px;
+        }
+
+        .box {
+            border: 1.5px solid black;
+            border-radius: 10px;
+            width: 50%;
+            height: 450px;
+            overflow: hidden;
+            padding: 10px;
+            position: relative;
+        }
+
+        .box a {
+            color: black
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .box-top{
+            height: 10%;
+            background: linear-gradient(to bottom, #007bff, #004a99);
+        }
+
+        #dibujos{
+            margin: 0 50px 20px 20px;
+        }
+
+        #graficos{
+            margin: 0 20px 20px 50px
+        }
+
+        #palabras{
+            width: 100%;
+            margin: 0 20px;
+        }
+
+        #palabras a{
+            text-decoration:underline;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="./../paginas/web.html">Mates Interactivas</a></h1>
+
+        <nav>
+            <a href="./../paginas/acercade.html">Documentación</a>
+            <a href="./../paginas/ciencia.html">Interactividad</a>
+        </nav>
+
+    </header>
+    
+    <div class="top">
+        <h2>Bienvenido a Mates Interactivas</h2>
+    </div>
+
+    <section class="info">
+        <div class="box" id="dibujos">
+            <h3>Forma Construcciones en Tiempo Real</h3>
+            <div class="box-bottom">
+                <img src="./../imagenes/info1.jpg" alt="Algo ha fallado..." width="100%">
+            </div>
+        </div>
+        <div class="box" id="graficos">
+            <h3>Estudia el Comportamiento con Gráficos</h3>
+            <div class="box-bottom">
+                <img src="./../imagenes/info2.jpg" alt="Algo ha fallado..." width="100%", height="100%">
+            </div>
+        </div>
+    </section>
+
+    <section class="info">
+        <div class="box" id="palabras">
+            <p>Es muy sencillo operar en esta página web: accediendo al apartado de <a href="./ciencia.html">Interactividad</a> es posible generar las construcciones matemáticas que se explican en el <a href="./acercade.html">documento.</a> Brevemente explicado, en función del ángulo que se introduzca, que puede ser cualquier número (estará en grados), se irán formando nuevos triángulos con ese ángulo.
+            </p>
+            <p>Después, el gráfico que se muestra al deslizar hacia abajo, muestra la evolución de la magnitud del segmento que va desde cada vértice hasta el centro de la figura. Este dato es muy relevante, puesto que es el que nos permite entender si la figura converge hacia algo finito o si, en cambio, sigue hasta el infinito. En el documento se explica con más detalle y precisión el porqué de esto, además de cuáles son los rangos específicos de valores del ángulo x que resultan en una convergencia o no convergencia de la magnitud de c.</p>
+            <p>Por lo que, si se pretende profundizar en la comprensión de este concepto matemático y de algunos de los resultados geométricos fascinantes que se producen, es imprescindible acudir al documento mencionado.</p>
+        </div>
+    </section>
+
+    <footer>
+        <a href="#">Contacto</a>
+        <p>Aidan Lorenzo 2024</p>
+    </footer>
+</body>
+</html>

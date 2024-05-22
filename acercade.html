@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./../imagenes/espiral90.jpg">
+    <title>Acerca De | Proyecto Matemático</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            color:white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .top {
+            border-radius: 10px;
+            margin: 20px;
+            padding: 20px;
+            height: 36px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top a{
+            color: blue;
+        }
+
+        .info {
+            display: flex;
+            margin: 10px;
+            height: 1000px;
+        }
+
+        .box {
+            border: 1.5px solid black;
+            border-radius: 10px;
+            width: 100%;
+            
+        }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="./../paginas/web.html">Mates Interactivas</a></h1>
+        <nav>
+            <a href="./../paginas/acercade.html">Documentación</a>
+            <a href="./../paginas/ciencia.html">Interactividad</a>
+        </nav>
+    </header>
+    
+    <div class="top">
+        <h2>Documentación del proyecto</h2> 
+    </div>
+
+    <div class="top">
+        <a href="./../documentos/documentacion_del_proyecto.pdf" target="_blank">Descargar PDF</a>
+    </div>
+
+    <section class="info">
+            <iframe class="box" src="./../documentos/documentacion_del_proyecto.pdf" frameborder="0"></iframe>
+    </section>
+
+    <footer>
+        <a href="#">Contacto</a>
+        <p>Aidan Lorenzo 2024</p>
+    </footer>
+</body>
+</html>
